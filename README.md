@@ -1,37 +1,34 @@
 # scheduler.py
-  Программа предназначена для формирования расписания тренингов на основании списка желаемых тренингов и определенных правил: временных ограничений, ограничений по должностям, регионам участников и прочих.
+  The program is designed to form a training schedule based on the list of desired trainings and certain rules: time limits, job restrictions, participants' regions and others.
   
 
 ## Algorithm
-  Из-за сложности правил и множества сотрудников, для которых необходимо составить расписание лучшим подходом, с моей точки зрения, является случайный перебор. 
-  На каждом шаге перебора для всех сотрудников и всех их тренингов случайным образом формируется список участник-тренинг (вася-управление проектами,петя-Эксель). Далее идем по этому случайному списку и пытаемся добавить учачстника в уже существующий тренинг или если такого типа тренинга еще не запланировано (или если не смогли добавить из-за ограничений в правилах) добавляем новый тренинг в расписание и добавляем в него участника. 
-  После прохода по всем участникам считаем количество участников, которых удалось добавить в расписание и сравниваем с максимальным достигнутым значением - если больше - мы нашли очередной лучший вариант. Сохраняем его и переходим к следующему случайному набору. У программы есть несколько огрничений: количество итераций (сколько случайных наборов мы обработаем), процент человеко-тренингов, которые удалось уместить в расписание, время, а также остановка происходит по CTRL+C.
+  Due to the complexity of the rules and the multitude of staff to schedule for, the best approach, in my opinion, is random brute force.
+  At each step of the enumeration, a list of training participants (Vasya-project management, Petya-Excel) is randomly generated for all employees and all their trainings. Next, we go through this random list and try to add a participant to an existing training, or if this type of training has not yet been planned (or if we could not add it due to restrictions in the rules), add a new training to the schedule and add a participant to it.
+  After passing through all the participants, we count the number of participants who were added to the schedule and compare with the maximum achieved value - if more, we found the next best option. We save it and move on to the next random set. The program has several limitations: the number of iterations (how many random sets we will process), the percentage of person-trainings that we managed to fit into the schedule, the time, and also stops by CTRL + C.
   
 ___
 ## Classes
 ### Logger
-Класс для логгирования действий, по факту можно сделать функцию.
+A class for logging actions, in fact, you can make a function.
 
 ### Rules
-Класс для хранения справочника правил и работы с ним.
+A class for storing the rules reference book and working with it.
 
 ### Trainings
-Класс для хранение списка человек для каждого типа тренинга.
+Class for keeping a list of people for each type of training.
 
 ### People
-Список запрашиваемых тренингов и истории тренингов. Для каждого сотрудника, присутствующего в списке запрашиваемых тренингов указано от 1 до 3 типов трегингов на которые сотрудник записался. Для каждого сотрудника, присутствующего в списке посещенных тренингов указаны трегинги, которые сотрудник посетил в прошлые годы. 
+List of requested trainings and training history. For each employee present in the list of requested trainings, from 1 to 3 types of tregings are indicated for which the employee signed up. For each employee present in the list of attended trainings, there are tregings that the employee attended in previous years.
 
-|регион|Город|Фамилия и Имя сотрудника|Должность|Линейный руководитель|KAM 1|KAM 2|...|
-|---|---|---|---|---|---|---|---|
-|KAM1|Москва|Иванов Иван|KAM|Петров Петр|1|1|...|
-|KAM1|Москва|Петров Петр|JKAM|Иванов Иван||1|...|
-|KAM1|Москва|Сидоров Сидр|KAM|Иванов Иван|1||...|
-|KAM1|Москва|Аннова Анна|KAM|Иванов Иван|||...|
+| Region | City | Surname and Name of the employee | Position | Line Manager | KAM 1 | KAM 2 | ... |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| KAM1 | Moscow | Ivanov Ivan | KAM | Petrov Petr | 1 | 1 | ... |
+| KAM1 | Moscow | Petrov Petr | JKAM | Ivanov Ivan || 1 | ... |
+| KAM1 | Moscow | Sidorov Sidr | KAM | Ivanov Ivan | 1 || ... |
+| KAM1 | Moscow | Annova Anna | KAM | Ivanov Ivan ||| ... |
 
 
 ### TrainerCalendar
-Расписание тренингов
+Trainings Schedule
 ____
-
-
-  
